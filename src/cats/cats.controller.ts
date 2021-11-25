@@ -2,13 +2,14 @@ import {
     Body,
     Controller,
     Get,
-    Header,
-    HttpCode,
     Param,
     Post,
+    // UseFilters,
 } from '@nestjs/common';
 import { CreateCatDto } from './dto/create-cat.dto';
 import { CatsService } from './cats.service';
+import { ForbiddenException } from '../common/exceptions/forbidden.exception';
+// import { HttpExceptionFilter } from '../common/exceptions/http-exception.filter';
 
 @Controller('cats')
 export class CatsController {
@@ -20,8 +21,9 @@ export class CatsController {
     }
 
     @Get()
+    // @UserFilters(HttpExceptionFilter)
     findAll(): string {
-        return 'this action returns all cats';
+        throw new ForbiddenException();
     }
 
     @Get(':id')
