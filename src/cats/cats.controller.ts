@@ -3,6 +3,7 @@ import {
     Controller,
     Get,
     Param,
+    ParseIntPipe,
     Post,
     // UseFilters,
 } from '@nestjs/common';
@@ -27,7 +28,7 @@ export class CatsController {
     }
 
     @Get(':id')
-    findOne(@Param() params): string {
-        return `this action returns ${params.id} cats`;
+    findOne(@Param('id', ParseIntPipe) id: number): string {
+        return this.catsService.findOne(id);
     }
 }
