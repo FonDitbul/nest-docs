@@ -11,7 +11,7 @@ import {
 import { CreateCatDto } from './dto/create-cat.dto';
 import { CatsService } from './cats.service';
 import { ForbiddenException } from '../common/exceptions/forbidden.exception';
-import { JoiValidationPipe } from '../common/pipes/joivalidation.pipe';
+import { ValidationPipe } from '../common/pipes/validation.pipe';
 // import { HttpExceptionFilter } from '../common/exceptions/http-exception.filter';
 
 @Controller('cats')
@@ -19,8 +19,7 @@ export class CatsController {
     constructor(private catsService: CatsService) {}
 
     @Post()
-    @UsePipes(new JoiValidationPipe(createCatSchema))
-    crete(@Body() createCatDto: CreateCatDto) {
+    crete(@Body(new ValidationPipe()) createCatDto: CreateCatDto) {
         return this.catsService.create(createCatDto);
     }
 
