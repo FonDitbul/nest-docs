@@ -3,7 +3,6 @@ import {
     Controller,
     Get,
     Param,
-    ParseIntPipe,
     Post,
     UsePipes,
     // UseFilters,
@@ -12,6 +11,7 @@ import { CreateCatDto } from './dto/create-cat.dto';
 import { CatsService } from './cats.service';
 import { ForbiddenException } from '../common/exceptions/forbidden.exception';
 import { ValidationPipe } from '../common/pipes/validation.pipe';
+import { ParseIntPipe } from '../common/pipes/parse-int.pipe';
 // import { HttpExceptionFilter } from '../common/exceptions/http-exception.filter';
 
 @Controller('cats')
@@ -30,7 +30,7 @@ export class CatsController {
     }
 
     @Get(':id')
-    findOne(@Param('id', ParseIntPipe) id: number): string {
+    findOne(@Param('id', new ParseIntPipe()) id: number): string {
         return this.catsService.findOne(id);
     }
 }
