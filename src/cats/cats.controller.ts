@@ -5,11 +5,13 @@ import {
     Param,
     ParseIntPipe,
     Post,
+    UsePipes,
     // UseFilters,
 } from '@nestjs/common';
 import { CreateCatDto } from './dto/create-cat.dto';
 import { CatsService } from './cats.service';
 import { ForbiddenException } from '../common/exceptions/forbidden.exception';
+import { JoiValidationPipe } from '../common/pipes/joivalidation.pipe';
 // import { HttpExceptionFilter } from '../common/exceptions/http-exception.filter';
 
 @Controller('cats')
@@ -17,8 +19,9 @@ export class CatsController {
     constructor(private catsService: CatsService) {}
 
     @Post()
-    crete(@Body() createCatDto: CreateCatDto): string {
-        return 'This action adds a new cat';
+    @UsePipes(new JoiValidationPipe(createCatSchema))
+    crete(@Body() createCatDto: CreateCatDto) {
+        return this.catsService.create(createCatDto);
     }
 
     @Get()
