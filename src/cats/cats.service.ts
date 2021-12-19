@@ -10,8 +10,8 @@ export class CatsService {
         return this.cats;
     }
 
-    findAll(): Cat[] {
-        return this.cats;
+    findAll(): string {
+        return 'all cats';
     }
 
     findOne(id: number): any {
