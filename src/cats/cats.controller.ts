@@ -4,19 +4,15 @@ import {
     Get,
     Param,
     Post,
-    SetMetadata,
-    UseGuards,
     UseInterceptors,
-    UsePipes,
-    // UseFilters,
 } from '@nestjs/common';
 import { CreateCatDto } from './dto/create-cat.dto';
 import { CatsService } from './cats.service';
-import { ForbiddenException } from '../common/exceptions/forbidden.exception';
 import { ValidationPipe } from '../common/pipes/validation.pipe';
 import { ParseIntPipe } from '../common/pipes/parse-int.pipe';
-import { RolesGuard } from '../common/guards/roles.guard';
 import { LoggingInterceptor } from '../common/interceptors/logging.interceptor';
+import { TransformInterceptor } from '../common/interceptors/transform.interceptor';
+
 // import { HttpExceptionFilter } from '../common/exceptions/http-exception.filter';
 
 @Controller('cats')
@@ -31,7 +27,7 @@ export class CatsController {
     }
 
     @Get()
-    // @UserFilters(HttpExceptionFilter)
+    @UseInterceptors(TransformInterceptor)
     findAll(): string {
         return this.catsService.findAll();
     }
