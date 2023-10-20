@@ -1,6 +1,10 @@
 import { HttpAdapterHost, NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { MicroserviceOptions, Transport } from '@nestjs/microservices';
+import {
+    ClientProviderOptions,
+    MicroserviceOptions,
+    Transport,
+} from '@nestjs/microservices';
 import { AllExceptionsFilter } from './common/exceptions/all-exceptiosn.filter';
 import { ValidationPipe } from './common/pipes/validation.pipe';
 
