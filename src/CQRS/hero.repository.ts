@@ -5,4 +5,9 @@ export class HeroRepository {
         const hero = new Hero('' + heroId);
         return hero;
     }
+
+    findAll() {
+        const heroList = [new Hero('1'), new Hero('2'), new Hero('3')];
+        return heroList;
+    }
 }

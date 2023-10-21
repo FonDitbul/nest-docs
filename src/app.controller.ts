@@ -15,11 +15,15 @@ export class AppController {
     }
 
     @Post()
-    test() {
+    killDragon() {
         this.heroService.killDragon('ddd', {
             heroId: '1',
             dragonId: '1',
         });
-        // return this.appService.getHello();
+    }
+
+    @Get('/heroes')
+    findAllHero() {
+        return this.heroService.findAll();
     }
 }
