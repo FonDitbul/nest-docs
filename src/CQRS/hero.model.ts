@@ -8,7 +8,7 @@ export class Hero extends AggregateRoot {
     }
     killEnemy(enemyId: string) {
         // Business logic
-        this.apply(new HeroKilledDragonEvent(this.id, enemyId));
         console.log('killEnemy');
+        this.apply(new HeroKilledDragonEvent(this.id, enemyId));
     }
 }
