@@ -9,11 +9,18 @@ export class AppController {
         private readonly heroService: HeroesGameService,
     ) {}
 
+    /**
+     * Supported comment
+     */
     @Get()
     getHello(): string {
         return this.appService.getHello();
     }
 
+    /**
+     * @param {string} target  The target to process
+     * @returns The processed target number
+     */
     @Post()
     killDragon() {
         this.heroService.killDragon('ddd', {
@@ -22,8 +29,15 @@ export class AppController {
         });
     }
 
+    /**
+     * testestsetsetsetestststssssv
+     *
+     * findAll test
+     * @param {string} target  The target to process
+     * @returns string
+     */
     @Get('/heroes')
-    findAllHero() {
+    findAllHero(target: string) {
         return this.heroService.findAll();
     }
 }

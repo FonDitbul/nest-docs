@@ -6,6 +6,14 @@ export class Hero extends AggregateRoot {
         super();
         this.autoCommit = true;
     }
+
+    /**
+     * First line
+     *
+     * 적을 죽였을때 나오는 메소드 야
+     *
+     * Second line
+     */
     killEnemy(enemyId: string) {
         // Business logic
         console.log('killEnemy');
